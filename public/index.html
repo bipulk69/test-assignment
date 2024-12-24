@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Testing Assignment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>API Testing Assignment</h1>
+
+  <section>
+    <h2>📝 API Request Details</h2>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>URL:</strong> <a href="https://jsonplaceholder.typicode.com/posts" target="_blank">https://jsonplaceholder.typicode.com/posts</a></p>
+    <p><strong>Headers:</strong> Authorization: Bearer &lt;token&gt;</p>
+    <p><strong>Query Parameters:</strong> None</p>
+  </section>
+
+  <section>
+    <h2>✅ Success Response</h2>
+    <pre>
+[
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "Sample title",
+    "body": "Sample body content"
+  }
+]
+    </pre>
+  </section>
+
+  <section>
+    <h2>❌ Error Response</h2>
+    <pre>
+{
+  "error": "Unauthorized",
+  "message": "Invalid token"
+}
+    </pre>
+  </section>
+
+  <section>
+    <h2>🧪 Generated Test Cases (Chai.js)</h2>
+    <pre>
+1. Validate Successful Response (200 OK)
+   chai.expect(response.status).to.equal(200);
+
+2. Validate Response Body Structure
+   chai.expect(response.data[0]).to.have.all.keys('userId', 'id', 'title', 'body');
+
+3. Handle Unauthorized Error (401 Unauthorized)
+   chai.expect(response.status).to.equal(401);
+   chai.expect(response.data.error).to.equal('Unauthorized');
+    </pre>
+  </section>
+</body>
+</html>
